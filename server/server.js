@@ -19,6 +19,10 @@ function errorHandler(error, req, res, next) {
   res.status(500).json(error);
 }
 
+//Catchall middleware
+server.use("*", (req, res) => {
+  res.status(404).json({ message: `No endpoint found` });
+});
 server.use(errorHandler);
 
 module.exports = server;
