@@ -1,5 +1,6 @@
 const express = require("express");
 const projectDb = require("../data/helpers/projectModel");
+const actionDb = require('../data/helpers/actionModel');
 const {checkProjectId, validateProjectData} = require('./customMiddleware');
 
 const router = express.Router();
@@ -53,6 +54,8 @@ router.post("/", validateProjectData, async (req, res, next) => {
 router.delete("/:id", checkProjectId, async (req, res, next) => {
   const { id } = req.params;
   try {
+    const actionsToDelete = await projectDb.getProjectActions(id);
+    await Promise.all(actionsToDelete.map(action=>actionDb.remove(action.id)));
     await projectDb.remove(id);
     res.status(200).json(req.project);
   } catch (error) {
