@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Axios from "axios";
-import {Switch, Route} from 'react-router-dom';
+import { Switch, Route } from "react-router-dom";
 import ProjectList from "./components/ProjectList";
 import ProjectDetails from "./components/ProjectDetails";
 
@@ -11,7 +11,7 @@ function App() {
   const [loading, setloading] = useState(false);
   useEffect(() => {
     setloading(true);
-    Axios.get(`/api/projects`)
+    Axios.get(`http://localhost:5000/api/projects`)
       .then(response => {
         setProjects(response.data);
       })
@@ -23,14 +23,18 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <Switch>
-        <Route exact path = '/'>
-          <ProjectList projects={projects}/>
-        </Route>
-        <Route exact path = '/projects/:id'>
-          <ProjectDetails project={projects}/>
-        </Route>
-      </Switch>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={props => <ProjectList {...props} projects={projects} />}
+          />
+          <Route
+            exact
+            path="/projects/:id"
+            render={props => <ProjectDetails {...props} project={projects} />}
+          />
+        </Switch>
       </header>
     </div>
   );
