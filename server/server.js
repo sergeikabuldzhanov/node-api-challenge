@@ -14,16 +14,16 @@ server.use(cors());
 server.use(helmet());
 server.use("/api/projects", projectRouter);
 server.use("/api/actions", actionRouter);
-server.use("/", express.static("../client/build"));
+server.use(express.static("../client/build"));
 
 function errorHandler(error, req, res, next) {
   res.status(500).json(error);
 }
 
 //Catchall middleware
-server.use("*", (req, res) => {
+/* server.use("*", (req, res) => {
   res.status(404).json({ message: `No endpoint found` });
-});
+}); */
 server.use(errorHandler);
 
 module.exports = server;
