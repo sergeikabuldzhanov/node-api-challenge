@@ -14,7 +14,7 @@ server.use(cors());
 server.use(helmet());
 server.use("/api/projects", projectRouter);
 server.use("/api/actions", actionRouter);
-server.use(express.static("../client/build"));
+server.use('*', express.static("../client/build"));
 
 function errorHandler(error, req, res, next) {
   res.status(500).json(error);
