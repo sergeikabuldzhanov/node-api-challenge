@@ -14,17 +14,19 @@ function App() {
     Axios.get(`/api/projects`)
       .then(response => {
         setProjects(response.data);
+        console.log(response);
+        
       })
       .catch(error => {
         setError(error.message);
+        console.log(error);
+        
       });
     setloading(false);
   }, []);
   return (
     <div className="App">
       <header className="App-header">
-        {projects.length==0 &&
-
         <Switch>
           <Route
             exact
@@ -37,7 +39,6 @@ function App() {
             render={props => <ProjectDetails {...props} project={projects} />}
           />
         </Switch>
-        }
       </header>
     </div>
   );
