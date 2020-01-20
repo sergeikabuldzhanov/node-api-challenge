@@ -12,3 +12,16 @@ I need this code, but don't know where, perhaps should make some middleware, don
 
 Go code!
 */
+require("dotenv").config();
+const express = require('express')
+const server = require("./server/server");
+server.use(express.static(`./client/build`));
+/* server.use("*", (req, res) => {
+  res.status(404).json({ message: `No endpoint found` });
+}); */
+
+const port = process.env.PORT || 5000;
+
+server.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+});

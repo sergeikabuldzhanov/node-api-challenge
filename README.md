@@ -38,15 +38,26 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
-- [ ] Mention two parts of Express that you learned about this week.
+- [X] Mention two parts of Express that you learned about this week.
 
-- [ ] Describe Middleware?
+    - Router
+    - Middleware
 
-- [ ] Describe a Resource?
+- [X] Describe Middleware?
 
-- [ ] What can the API return to help clients know if a request was successful?
+    - Middleware is an intermediary function provided to express, which takes in the request and response objects, and after arbitrary actions either sends a response, or calls on the next middleware function.
 
-- [ ] How can we partition our application into sub-applications?
+- [X] Describe a Resource?
+
+    - Resource is a piece of data managed by server, with access to it provided by an API.
+
+- [X] What can the API return to help clients know if a request was successful?
+
+    - An http response object with a proper status and any additional info inside the response body
+
+- [X] How can we partition our application into sub-applications?
+
+    - Using express.Router, with different endpoints provided for each Router instance
 
 ## Minimum Viable Product
 
